@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="13533" systemVersion="16G29" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Avatar" representedClassName="Avatar" syncable="YES">
+        <attribute name="avatar_data" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="avatar_url" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="commit" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Commit" inverseName="avatar" inverseEntity="Commit" syncable="YES"/>
+        <relationship name="repository" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Repository" inverseName="avatar" inverseEntity="Repository" syncable="YES"/>
+    </entity>
+    <entity name="Commit" representedClassName="Commit" syncable="YES">
+        <attribute name="author_avatar_url" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="author_name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="branch_name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="commit_hash" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="commit_message" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="commit_timestamp" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="avatar" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Avatar" inverseName="commit" inverseEntity="Avatar" syncable="YES"/>
+        <relationship name="repository" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Repository" inverseName="commits" inverseEntity="Repository" syncable="YES"/>
+    </entity>
+    <entity name="Repository" representedClassName="Repository" syncable="YES">
+        <attribute name="image" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="image_url" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="owner" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="rank" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="repo_id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="repo_name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="short_description" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="avatar" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Avatar" inverseName="repository" inverseEntity="Avatar" syncable="YES"/>
+        <relationship name="commits" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Commit" inverseName="repository" inverseEntity="Commit" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Avatar" positionX="-45" positionY="72" width="128" height="105"/>
+        <element name="Commit" positionX="-54" positionY="-9" width="128" height="165"/>
+        <element name="Repository" positionX="-63" positionY="-18" width="128" height="180"/>
+    </elements>
+</model>
